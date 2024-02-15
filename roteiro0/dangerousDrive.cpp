@@ -22,7 +22,8 @@ int main(){
             continue;
         }
 
-        int voltou = 0;    
+        int voltou = 0;  
+          
         for(int i = 0; i < n; i++){
             for(int j = 0; j < r; j++){
                 if(mn[i] == mr[j]){
