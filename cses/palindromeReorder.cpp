@@ -6,23 +6,24 @@ int main(){
     char c;
     map<char, int> p;
 
-    int count = 0;
-
     while(cin >> c){
         p[c] += 1;
-        count += 1;
     }
 
+    int par = 0;
+    int impar = 0;
+    for(auto it = p.begin(); it != p.end(); it++){
+        if(it->second % 2 == 0)
+            par++;
+        else
+            impar++;
+    }
 
-    /* 
-        Fazer o processo de NO SOLUTION
-    */
-
-    /*
+    if(impar > 1){
+        cout << "NO SOLUTION" << endl;
+        return 0;
+    }
     
-        Melhor a impressão
-    
-    */
     int aux;
     for(auto it = p.begin(); it != p.end(); it++){
         if(it->second % 2 == 0){
@@ -49,8 +50,6 @@ int main(){
         }
     }
     cout << endl;
-
-
 
     return 0;
 }
