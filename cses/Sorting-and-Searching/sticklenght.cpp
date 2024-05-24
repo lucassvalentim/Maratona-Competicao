@@ -2,9 +2,10 @@
 using namespace std;
 
 #define ll long long
-
+#define endl '\n'
 
 int main(){
+    
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
@@ -12,22 +13,21 @@ int main(){
     int n;
     cin >> n;
 
-    vector<ll>num;
+    vector<int>sticks;
     ll a;
-
     for(int i = 0; i < n; i++){
         cin >> a;
-        num.push_back(a);
+        sticks.push_back(a);
     }
 
-    ll max_sum = num[0];
-    ll sum  = num[0];
+    sort(sticks.begin(), sticks.end());
+
+    ll middle = sticks[n / 2];
     
-    for(int i = 1; i < n; i++){
-        sum = max(num[i], sum + num[i]);
-        max_sum = max(sum, max_sum);
-    }
+    ll sum = 0;
+    for(auto x: sticks)
+        sum += abs(x - middle);
 
-    cout << max_sum << '\n';
+    cout << sum << endl;
     return 0;
 }
