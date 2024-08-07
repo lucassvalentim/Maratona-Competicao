@@ -10,17 +10,16 @@ vector<int>dist(MAX, -1);
 int tamanho = 1;
 void dfs(int v, vector<vector<int>> & grafo, vector<bool>&visitados){
     visitados[v] = true;
-    cout << string(tamanho, ' ');
     for(auto u : grafo[v]){
         if(!visitados[u]){
+            cout << string(tamanho++, ' ');
             cout << v << "-" << u << " pathR(G, " << u << ")" << endl;
             visitados[u] = true;
-            tamanho++;
             dfs(u, grafo, visitados);
         }else{
             if(grafo[u][v] == grafo[v][u]){
+                cout << string(tamanho++, ' ');
                 cout << v << '-' << u << endl;
-                tamanho++;
             }
         }
         tamanho--;
@@ -53,6 +52,7 @@ int main(){
         }
 
         caso++;
+        if(n > 0) cout << endl;
     }
 
     return 0;
