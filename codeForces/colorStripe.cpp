@@ -13,6 +13,35 @@ int main(){
     int n, k; cin >> n >> k;
     string s; cin >> s;
 
+    if(k == 2){
+        string seq1 = "";
+        string seq2 = "";
+        
+        char c = 'A';
+        for(int i = 0; i < n; i++){
+            seq1 += (c);
+            seq2 += ((c - 65 + 1) % 2) + 65;
+            c = ((c - 65 + 1) % 2) + 65;
+        }
+        
+        int result1 = 0;
+        int result2 = 0;
+        for(int i = 0; i < n; i++){
+            if(s[i] != seq1[i]) result1++;
+            if(s[i] != seq2[i]) result2++;
+        }
+
+        if(result1 < result2){
+            cout << result1 << endl;
+            cout << seq1 << endl;
+        }else{
+            cout << result2 << endl;
+            cout << seq2 << endl;
+            
+        }
+        return 0; 
+    }
+
     int result = 0;
     for(int i = 1; i < s.size(); i++){
         if(s[i] == s[i-1]){
