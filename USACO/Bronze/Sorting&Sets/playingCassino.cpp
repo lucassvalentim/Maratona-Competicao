@@ -19,20 +19,28 @@ int main(){
         ll n, m;
         cin >> n >> m;
 
-        vector<vector<ll>>cards(n, vector<ll>(m));
+        vector<vector<ll>>cards(m, vector<ll>(n));
         for(int i = 0; i < n; i++){
             for(int j = 0; j < m; j++){
-                cin >> cards[i][j];
+                cin >> cards[j][i];
             }
+        }
+
+        for(vector<ll> &x : cards){
+            sort(x.rbegin(), x.rend());
         }
 
         ll ans = 0;
-        for(int i = 0; i < n; i++){
-            for(int j = i + 1; j < n; j++){
-                ans += solve(cards[i], cards[j]);     
+        for(vector<ll> &x : cards){
+            ll pos = 0, neg = 0, npos = x.size() - 1, nneg = 0;
+            for(ll &y : x){
+                pos += y * npos;
+                neg += y * nneg;
+                npos--;
+                nneg++;
             }
+            ans += pos - neg;
         }
-
         cout << ans << endl;
     }
 
