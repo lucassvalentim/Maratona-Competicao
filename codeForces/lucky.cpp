@@ -13,11 +13,21 @@ int main(){
     string s;
     cin >> s;
 
-    
-    for(int i = 0; i < s.size(); i++){
+    ll soma = 0;
+    for(ll i = 0; i < s.size(); i++){
         if(s[i] == '4' || s[i] == '7'){
-
+            soma++;
         }
     }
+
+    string resultado = to_string(soma);
+    for(ll i = 0; i < resultado.size(); i++){
+        if(resultado[i] != '7' && resultado[i] != '4'){
+            cout << "NO" << endl;
+            return 0;
+        }
+    } 
+
+    cout << "YES" << endl;
     return 0;
 }
