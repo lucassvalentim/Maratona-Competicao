@@ -2,22 +2,22 @@
 using namespace std;
 
 
-bool dfs(vector<vector<int>> adj, int i, int v, vector<bool> visitado){
-    visitado[v] = true;
-    for(auto edge : adj[v]){
-        if(edge == i){
-            return true;
-        }
-        if(!visitado[edge]){
-            if(dfs(adj, i, edge, visitado)){
-                return true;
-            }
-            visitado[edge] = false;
-        }
-    }
+// bool dfs(vector<vector<int>> adj, int i, int v, vector<bool> visitado){
+//     visitado[v] = true;
+//     for(auto edge : adj[v]){
+//         if(edge == i){
+//             return true;
+//         }
+//         if(!visitado[edge]){
+//             if(dfs(adj, i, edge, visitado)){
+//                 return true;
+//             }
+//             visitado[edge] = false;
+//         }
+//     }
     
-    return false;
-}
+//     return false;
+// }
 
 int main(){
     
@@ -28,31 +28,23 @@ int main(){
     cin >> n;
     
     int a, b;
-    vector<vector<int>> adj(n);
+    vector<int> outgoin(n);
     for(int i = 0; i < n - 1; i++){
         cin >> a >> b;
         a--; b--;
         
-        adj[a].push_back(b);
+        outgoin[a]++;
     }
 
-    vector<bool> visitados(n, false);
-
+    vector<int> possibles;
     for(int i = 0; i < n; i++){
-        bool is_possible = true;
-        for(int v = 0; v < n; v++){
-            if(v != i && !dfs(adj, i, v,visitados)){
-                is_possible = false;
-            }
-        }
-
-        if(is_possible){
-            cout << i + 1 << endl;
-            return 0;
-        }
+        if(outgoin[i] == 0)
+            possibles.push_back(i + 1);
     }
 
-    cout << -1 << endl;
+    int result = possibles.size() == 1 ? possibles[0] : - 1;
+
+    cout << result << endl;
 
     return 0;
 }
